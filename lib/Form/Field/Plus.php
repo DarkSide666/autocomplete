@@ -1,5 +1,5 @@
 <?php
-namespace autocomplete;
+namespace darkside666\autocomplete;
 
 class Form_Field_Plus extends Form_Field_Basic
 {

@@ -31,6 +31,21 @@ Next, update your project's composer.json file to include AutoComplete:
 
 ## Usage
 
+In your Frontend->init() add following lines:
+
+```php
+    // allow add-ons to reside in /vendor folder
+    $this->addLocation(['addons' => ['../vendor']])
+        ->setBasePath($this->pathfinder->base_location->getPath());
+
+    // HACK: force call Initiator of all used add-ons :)
+    foreach (['darkside666/autocomplete'] as $addon) {
+        $this->add("$addon\Initiator");
+    }
+```
+
+And then you're ready to use this add-on like this:
+
 ```php
     // In model
     $model->hasOne('User')->display(['form'=>'darkside666/autocomplete/Basic']);

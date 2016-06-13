@@ -2,7 +2,7 @@
 /**
  * Addon  for converting hasOne field into auto-complete
  */
-namespace autocomplete;
+namespace darkside666\autocomplete;
 
 class Form_Field_Basic extends \Form_Field_Hidden
 {
@@ -36,12 +36,20 @@ class Form_Field_Basic extends \Form_Field_Hidden
         parent::init();
 
         // add add-on locations to pathfinder
+        /*
         $l = $this->api->locate('addons', __NAMESPACE__, 'location');
         $addon_location = $this->api->locate('addons', __NAMESPACE__);
         $this->api->pathfinder->addLocation($addon_location, array(
-            'js'  => 'js',
-            'css' => 'templates/css',
+            'js'  => 'public/js',
+            'css' => 'public/css',
         ))->setParent($l);
+        */
+
+        /* this way it works but looks very cryptic
+        $l = $this->app->locate('addons', __NAMESPACE__);
+        $this->app->pathfinder->public_location
+            ->addRelativeLocation('../'.$l, ['public'=>'public','js'=>'public/js','css'=>'public/css']);
+        */
 
         // add additional form field
         $name = preg_replace('/_id$/', '', $this->short_name);
