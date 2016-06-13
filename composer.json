@@ -1,0 +1,28 @@
+{
+    "name": "darkside666/autocomplete",
+    "type": "library",
+    "description": "AutoComplete field add-on for Agile Toolkit (ATK4)",
+    "homepage": "https://github.com/darkside666/autocomplete",
+    "keywords": ["atk4","autocomplete","agile","toolkit"],
+    "license": "AGPL",
+    "authors": [
+        {
+            "name": "Imants Horsts",
+        }
+    ],
+    "source": {
+        "url": "git@github.com:darkside666/autocomplete.git",
+        "type": "git",
+        "reference": "origin/master"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "atk4/atk4": ">=4.3",
+        "php": ">=5.4"
+    },
+    "autoload": {
+        "psr-0": {
+            "DarkSide666\\AutoComplete\\": "lib/"
+        }
+    }
+}
