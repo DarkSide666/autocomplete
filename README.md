@@ -1,4 +1,4 @@
-#AutoComplete field add-on for Agile Toolkit (ATK4)
+#AutoComplete field add-on for Agile Toolkit 4.3+
 
 This will replace standard drop-down field with an auto-complete field.
 
