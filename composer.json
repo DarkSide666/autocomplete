@@ -18,7 +18,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.4",
-        "atk4\/atk4":"dev-develop"
+        "atk4\/atk4":"*"
     },
     "autoload": {
         "psr-0": {
