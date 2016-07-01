@@ -112,11 +112,13 @@ class Form_Field_Basic extends \Form_Field_Hidden
                 ->where($this->model->getElement( $this->id_field), 'like', $this->model->dsql()->getField('id','test'))
         )->debug();
         */
-        if ($this->model->controller->supportOrder) {
-            $this->model->setOrder($this->title_field); // order ascending by title field
-        }
-        if ($this->model->controller->supportLimit && $this->limit_rows) {
-            $this->model->setLimit($this->limit_rows); // limit resultset
+        if ($this->model->controller) {
+            if ($this->model->controller->supportOrder) {
+                $this->model->setOrder($this->title_field); // order ascending by title field
+            }
+            if ($this->model->controller->supportLimit && $this->limit_rows) {
+                $this->model->setLimit($this->limit_rows); // limit resultset
+            }
         }
 
         return $this;
