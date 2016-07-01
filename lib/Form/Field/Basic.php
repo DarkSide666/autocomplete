@@ -111,9 +111,11 @@ class Form_Field_Basic extends \Form_Field_Hidden
                 ->where($this->model->getElement( $this->id_field), 'like', $this->model->dsql()->getField('id','test'))
         )->debug();
         */
-        $this->model->setOrder($this->title_field); // order ascending by title field
-        if ($this->limit_rows) {
-            $this->model->_dsql()->limit($this->limit_rows); // limit resultset
+        if ($this->model->controller->supportOrder) {
+            $this->model->setOrder($this->title_field); // order ascending by title field
+        }
+        if ($this->model->controller->supportLimit && $this->limit_rows) {
+            $this->model->setLimit($this->limit_rows); // limit resultset
         }
 
         return $this;
@@ -125,8 +127,23 @@ class Form_Field_Basic extends \Form_Field_Hidden
         return $this; //maintain chain
     }
 
-    function getData() {
+    function getData()
+    {
         return $this->model->getRows(array($this->id_field, $this->title_field));
+    }
+
+    function setValueList($data)
+    {
+        $m = $this->add('Model');
+        $m->setSource('Array', $data);
+        $this->setModel($m);
+
+        return $this;
+    }
+
+    function getValueList()
+    {
+        return $this->getData();
     }
 
     function setModel($m, $id_field = null, $title_field = null)
@@ -142,10 +159,11 @@ class Form_Field_Basic extends \Form_Field_Hidden
                 $this->addCondition($_GET['term']);
             }
 
+            // retrieve data from model
             $data = $this->getData();
 
+            // cast values to string
             foreach ($data as &$row) {
-                //var_dump($row['_id']->__toString()); echo '<hr>';
                 $row[$this->id_field] = (string)$row[$this->id_field];
             }
 
