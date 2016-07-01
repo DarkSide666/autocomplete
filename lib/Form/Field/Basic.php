@@ -37,9 +37,9 @@ class Form_Field_Basic extends \Form_Field_Hidden
 
         // add add-on locations to pathfinder
         /*
-        $l = $this->api->locate('addons', __NAMESPACE__, 'location');
-        $addon_location = $this->api->locate('addons', __NAMESPACE__);
-        $this->api->pathfinder->addLocation($addon_location, array(
+        $l = $this->app->locate('addons', __NAMESPACE__, 'location');
+        $addon_location = $this->app->locate('addons', __NAMESPACE__);
+        $this->app->pathfinder->addLocation($addon_location, array(
             'js'  => 'public/js',
             'css' => 'public/css',
         ))->setParent($l);
@@ -85,7 +85,7 @@ class Form_Field_Basic extends \Form_Field_Hidden
 
     function setCaption($_caption)
     {
-        $this->caption = $this->other_field->caption = $this->api->_($_caption);
+        $this->caption = $this->other_field->caption = $this->app->_($_caption);
         return $this;
     }
 
@@ -174,7 +174,7 @@ class Form_Field_Basic extends \Form_Field_Hidden
 
     function render()
     {
-        $url = $this->api->url(null, array($this->name => 'ajax'));
+        $url = $this->app->url(null, array($this->name => 'ajax'));
         if ($this->value) { // on add new and inserting allow empty start value
             $this->model->tryLoad($this->value);
             $name = $this->model->get($this->title_field);
