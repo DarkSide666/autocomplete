@@ -3,7 +3,7 @@ namespace darkside666\autocomplete;
 
 class Form_Field_Plus extends Form_Field_Basic
 {
-    function setModel($model)
+    public function setModel($model)
     {
         parent::setModel($model);
         $self = $this;
@@ -18,7 +18,7 @@ class Form_Field_Plus extends Form_Field_Basic
             ->set('+')
             ->add('VirtualPage')
             ->bindEvent('Add New Record', 'click')
-                ->set(function($page)use($self) {
+                ->set(function ($page) use ($self) {
                     $form = $page->add('Form');
                     $form->setModel($self->model);
                     if ($form->isSubmitted()) {

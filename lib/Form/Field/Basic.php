@@ -31,7 +31,7 @@ class Form_Field_Basic extends \Form_Field_Hidden
 
 
 
-    function init()
+    public function init()
     {
         parent::init();
 
@@ -64,7 +64,7 @@ class Form_Field_Basic extends \Form_Field_Hidden
             $text = sprintf($this->hint, $this->min_length, $this->limit_rows);
             if ($this->hint_show_as=='placeholder') {
                 $this->other_field->setAttr('placeholder', $text);
-            } elseif($this->hint_show_as=='hint') {
+            } elseif ($this->hint_show_as=='hint') {
                 $this->other_field->setFieldHint($text);
             }
         }
@@ -78,30 +78,31 @@ class Form_Field_Basic extends \Form_Field_Hidden
         }
     }
 
-    function setTitleField($title_field)
+    public function setTitleField($title_field)
     {
         $this->title_field = $title_field;
+        return $this;
     }
 
-    function setCaption($_caption)
+    public function setCaption($_caption)
     {
         $this->caption = $this->other_field->caption = $this->app->_($_caption);
         return $this;
     }
 
-    function mustMatch()
+    public function mustMatch()
     {
         $this->options = array_merge($this->options, array('mustMatch'=>'true'));
         return $this;
     }
 
-    function validateNotNULL($msg = null)
+    public function validateNotNULL($msg = null)
     {
         $this->other_field->validateNotNULL($msg);
         return $this;
     }
 
-    function addCondition($q)
+    public function addCondition($q)
     {
         $this->model->addCondition($this->search_field ?: $this->title_field, 'like', '%'.$q.'%'); // add condition
         /*
@@ -121,18 +122,18 @@ class Form_Field_Basic extends \Form_Field_Hidden
         return $this;
     }
 
-    function setOptions($options = array())
+    public function setOptions($options = array())
     {
         $this->options = $options;
         return $this; //maintain chain
     }
 
-    function getData()
+    public function getData()
     {
         return $this->model->getRows(array($this->id_field, $this->title_field));
     }
 
-    function setValueList($data)
+    public function setValueList($data)
     {
         $m = $this->add('Model');
         $m->setSource('Array', $data);
@@ -141,12 +142,12 @@ class Form_Field_Basic extends \Form_Field_Hidden
         return $this;
     }
 
-    function getValueList()
+    public function getValueList()
     {
         return $this->getData();
     }
 
-    function setModel($m, $id_field = null, $title_field = null)
+    public function setModel($m, $id_field = null, $title_field = null)
     {
         parent::setModel($m);
 
@@ -172,7 +173,7 @@ class Form_Field_Basic extends \Form_Field_Hidden
         }
     }
 
-    function render()
+    public function render()
     {
         $url = $this->app->url(null, array($this->name => 'ajax'));
         if ($this->value) { // on add new and inserting allow empty start value
