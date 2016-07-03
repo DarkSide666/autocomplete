@@ -1,3 +1,4 @@
+/* Autocomplete widget styles */
 input.ui-autocomplete-input{
 	background-image: url(../images/magnifier.png);
 	background-repeat: no-repeat;
@@ -6,4 +7,20 @@ input.ui-autocomplete-input{
 }
 input.ui-autocomplete-loading{
 	background-image: url(../images/indicator.gif);
+}
+
+/* jQuery-UI autocomplete tweaks */
+.ui-autocomplete {
+    padding: 0;
+    border-color: #0095ff !important;
+    -webkit-box-shadow: 0 0 3px rgba(0, 149, 255, 0.7), 0 0 10px rgba(0, 149, 255, 0.3);
+    box-shadow: 0 0 3px rgba(0, 149, 255, 0.7), 0 0 10px rgba(0, 149, 255, 0.3);
+    outline: none;
+}
+.ui-autocomplete .ui-menu-item {
+    background: #fff;
+    cursor: pointer;
+}
+.ui-autocomplete .ui-menu-item a {
+    color: #4c5359;
 }
