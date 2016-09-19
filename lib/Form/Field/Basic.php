@@ -55,8 +55,12 @@ class Form_Field_Basic extends \Form_Field_Hidden
         $name = preg_replace('/_id$/', '', $this->short_name);
         $caption = null;
         if ($this->owner->model) {
-            if ($f = $this->owner->model->getField($this->short_name)) {
-                $caption = $f->caption();
+            if ($f = $this->owner->model->getElement($this->short_name)) {
+                if ($this->owner->model instanceof \atk4\data\Model) {
+                    $caption = isset($f->ui['caption']) ? $f->ui['caption'] : null;
+                } else {
+                    $caption = $f->caption();
+                }
             }
         }
         $this->other_field = $this->owner->addField('line', $name, $caption);
@@ -109,7 +113,7 @@ class Form_Field_Basic extends \Form_Field_Hidden
         $this->model->addCondition(
             $this->model->dsql()->orExpr()
                 ->where($this->model->getElement( $this->title_field), 'like', '%'.$q.'%')
-                ->where($this->model->getElement( $this->id_field), 'like', $this->model->dsql()->getField('id','test'))
+                ->where($this->model->getElement( $this->id_field), 'like', $this->model->dsql()->getElement('id','test'))
         )->debug();
         */
         if ($this->model->controller) {
