@@ -36,11 +36,9 @@ $.each({
 			},
 			// Triggered when the field is blurred, if the value has changed.
 			change: function( event, ui ) {
-				var data=$.data(this);//Get plugin data for 'this'
-				if(data.uiAutocomplete.selectedItem==undefined) {
+				if (!ui.item || !ui.item[id_field]) {
 					if("mustMatch" in options) q.val('');
 					$(other_field).val(q.val()).trigger('change');
-
 					return false;
 				}
 			}
