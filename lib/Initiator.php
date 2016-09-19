@@ -11,12 +11,15 @@ class Initiator extends \Controller_Addon {
         // Route pages of this add-on with following prefix
 		//$this->routePages('darkside666_autocomplete');
 
+
         // Add add-on locations to pathfinder
-        $this->addLocation([
+        $loc = $this->addLocation([
             'template'  => 'templates',
             'public'    => 'public',
             'js'        => 'public/js',
             'css'       => 'public/css',
-        ])->setBaseURL('../../vendor/' . __NAMESPACE__);
-	}
+        ]);
+        // hackish and incorrect way to set baseURL of add-on
+        $loc->setBaseURL($this->app->url('/').'../../vendor/' . __NAMESPACE__);
+    }
 }

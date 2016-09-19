@@ -116,7 +116,12 @@ class Form_Field_Basic extends \Form_Field_Hidden
                 ->where($this->model->getElement( $this->id_field), 'like', $this->model->dsql()->getElement('id','test'))
         )->debug();
         */
-        if ($this->model->controller) {
+        if ($this->model instanceof \atk4\data\Model) {
+            $this->model->setOrder($this->title_field);
+            if ($this->limit_rows) {
+                $this->model->setLimit($this->limit_rows);
+            }
+        } elseif ($this->model->controller) {
             if ($this->model->controller->supportOrder) {
                 $this->model->setOrder($this->title_field); // order ascending by title field
             }
@@ -136,7 +141,11 @@ class Form_Field_Basic extends \Form_Field_Hidden
 
     public function getData()
     {
-        return $this->model->getRows(array($this->id_field, $this->title_field));
+        if ($this->model instanceof \atk4\data\Model) {
+            return $this->model->export([$this->id_field, $this->title_field]);
+        } else {
+            return $this->model->getRows(array($this->id_field, $this->title_field));
+        }
     }
 
     public function setValueList($data)
