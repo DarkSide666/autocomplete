@@ -33,9 +33,10 @@ class Form_Field_Plus extends Form_Field_Basic
                     $form->addSubmit('Save');
                     if ($form->isSubmitted()) {
                         $form->update();
-                        $js = array();
-                        $js[] = $self->js()->val($form->model[$self->id_field]);
-                        $js[] = $self->other_field->js()->val($form->model[$self->title_field]);
+                        $js = array(
+                            $self->js()->val($form->model[$self->id_field]),
+                            $self->other_field->js()->val($form->model[$self->title_field]),
+                        );
                         $form->js(null, $js)->univ()->closeDialog()->execute();
                     }
                 });
