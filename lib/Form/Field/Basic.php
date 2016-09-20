@@ -25,9 +25,12 @@ class Form_Field_Basic extends \Form_Field_Hidden
     public $other_field;
 
     // Model ID field and title field names
-    protected $id_field;
-    protected $title_field;
-    protected $search_field;
+    public $id_field;
+    public $title_field;
+    public $search_field;
+
+    /** @var ButtonSet */
+    public $buttons;
 
 
 
@@ -80,6 +83,17 @@ class Form_Field_Basic extends \Form_Field_Hidden
         if ($this->min_length) {
             $this->options['minLength'] = $this->min_length;
         }
+    }
+
+    public function addButton($label = null, $options = array())
+    {
+        // adds buttonset
+        if (! ($bs = $this->buttons)) {
+            $this->buttons = $bs = $this->other_field->afterField()->add('ButtonSet');
+            $bs->addClass('atk-text-nowrap'); // hack to place all buttons in one row
+        }
+
+        return $bs->addButton($label, $options);
     }
 
     public function setTitleField($title_field)
