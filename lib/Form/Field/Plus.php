@@ -9,6 +9,9 @@ class Form_Field_Plus extends Form_Field_Basic
     /** @var string form title */
     public $form_title = 'Add New Record';
 
+    /** @var ButtonSet */
+    public $buttons;
+
     public function setModel($model)
     {
         parent::setModel($model);
@@ -17,10 +20,10 @@ class Form_Field_Plus extends Form_Field_Basic
         $f = $this->other_field;
 
         // Add buttonset to name field
-        $bs = $f->afterField()->add('ButtonSet');
+        $this->buttons = $f->afterField()->add('ButtonSet');
 
         // Add button - open dialog for adding new element
-        $bs->add('Button')
+        $this->buttons->add('Button')
             ->set('+')
             ->add('VirtualPage')
             ->bindEvent($this->form_title, 'click')
