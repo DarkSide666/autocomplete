@@ -4,7 +4,7 @@
     "description": "AutoComplete field add-on for Agile Toolkit (ATK4)",
     "homepage": "https://github.com/darkside666/autocomplete",
     "keywords": ["atk4","autocomplete","agile","toolkit"],
-    "license": "AGPL",
+    "license": "MIT",
     "authors": [
         {
             "name": "Imants Horsts"
